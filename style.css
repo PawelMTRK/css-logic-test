@@ -1,0 +1,75 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    margin: 0;
+    justify-content: center;;
+    align-items: center;
+    flex-direction: column;
+}
+
+#floater {
+    width: 110vw;
+    height: 30vh;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    background-color: lightgray;
+    animation: floating 15s infinite ease-in-out;
+    transform: rotate(20deg);
+}
+
+@keyframes floating {
+    0% { transform: rotate(2deg) translateY(-50px); }
+    50% { transform: rotate(6deg) translateY(-90px); }
+    80% { transform: rotate(-1deg) translateY(-80px); }
+    100% { transform: rotate(2deg) translateY(-50px); }
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 3em);
+    grid-template-rows: repeat(3, 3em);
+    grid-gap: 1em;
+}
+
+input {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+}
+
+label,
+.result {
+    width: 3em;
+    height: 3em;
+    border: 0.5em gray solid;
+    border-radius: 1.5em;
+    transition: all 0.1s ease-in-out;
+    box-sizing: border-box;
+}
+
+.result {
+    border-width: 1.5rem;
+}
+
+.divider {
+    grid-column: 3;
+    font-size: 2rem;
+    color: lightgray;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+input:checked + label,
+:not(input:checked) + label + input:checked + label ~ #xor,
+input:checked + label +:not(input:checked) + label ~ #xor,
+input:checked ~ input:checked ~ #and,
+input:checked ~ #or
+{
+    border-color: black;
+    border-radius: 0em;
+}
